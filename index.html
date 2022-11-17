@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BIG3計算機</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/inter.css">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVDBWHBPBW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-EVDBWHBPBW');
+  </script>
+</head>
+<body>
+    <div class="page-header" id="banner">
+        <div class="row my-4">
+          <div class="col-12">
+            <h1 class="display-3">BIG3計算機</h1>
+            <p class="lead"></p>
+          </div>
+        </div>
+      </div>
+
+      <!--MAX計算公式(O'Conner式)
+        1RM = 重量 × (1 + 0.025 × 回数)
+      -->
+    <h3>使い方</h3>
+    <h4>BIG3の各フォームに挙げられる重量と回数を入力してください。</h4>
+    <h4>計算ボタンをタップするとすぐに推定MAX重量を算出します。</h4>
+    <h4>不具合の報告やご意見などは<a href="mailto:motoki@apphub.jp">motoki@apphub.jp</a>までお願いします</h4>
+    </br>
+
+    <h2 class="display-4">ベンチプレス</h2>
+      <div class="input-group mb-5">
+        <input class="form-control form-control-lg" type="number" placeholder="重量を入力してください" id="bench_w">
+        <div class="input-group-append">
+          <span class="input-group-text" id="b1">kg</span>
+        </div>
+      </div>
+      <div class="input-group mb-5">
+        <input class="form-control form-control-lg" type="number" placeholder="回数を入力してください" id="bench_r">
+        <div class="input-group-append">
+          <span class="input-group-text" id="b2">回</span>
+        </div>
+      </div>
+    <!--ボタンを中央に配置-->
+    <div class="col text-center">
+      <button class="btn btn-primary btn-lg btn-block" id="bench_calculate">計算</button> <!--ボタンを横いっぱいに配置-->
+    </div>
+</br>
+    <div>
+      <h3>推定MAX重量:<output name="result" id="bench_MAX"></output>  kg</h3>
+    </div>
+    </br>
+
+      <script>
+        var bench_calculate = document.getElementById("bench_calculate");
+        bench_calculate.addEventListener("click",function(a) {
+          a.preventDefault();
+          var bench_w = document.getElementById("bench_w").value;
+          var bench_r = document.getElementById("bench_r").value;
+          var a = 0.025 * parseInt(bench_r,10);
+          var b = a + 1;
+          var sum = parseInt(bench_w,10)*b;
+          var bench_MAX = document.getElementById("bench_MAX");
+          bench_MAX.value = Math.floor(sum);
+        });
+      </script>
+
+    <h2 class="display-4">スクワット</h2>
+      <div class="input-group mb-5">
+        <input class="form-control form-control-lg" type="number" placeholder="重量を入力してください" id="sq_w">
+        <div class="input-group-append">
+          <span class="input-group-text" id="s1">kg</span>
+        </div>
+      </div>
+        <div class="input-group mb-5">
+        <input class="form-control form-control-lg" type="number" placeholder="回数を入力してください" id="sq_r">
+          <div class="input-group-append">
+            <span class="input-group-text" id="s2">回</span>
+          </div>
+      </div>
+
+    <!--ボタンを中央に配置-->
+    <div class="col text-center">
+      <button class="btn btn-primary btn-lg btn-block" id="sq_calculate">計算</button> <!--ボタンを横いっぱいに配置-->
+    </div>
+</br>
+    <div>
+      <h3>推定MAX重量:<output name="result" id="sq_MAX"></output>  kg</h3>
+    </div>
+
+    </br>
+
+      <script>
+        var sq_calculate = document.getElementById("sq_calculate");
+        sq_calculate.addEventListener("click",function(b) {
+          b.preventDefault();
+          var sq_w = document.getElementById("sq_w").value;
+          var sq_r = document.getElementById("sq_r").value;
+          var sum = parseInt(sq_w,10)*parseInt(sq_r,10)/33.3+parseInt(sq_w,10);
+          var sq_MAX = document.getElementById("sq_MAX");
+          sq_MAX.value = Math.floor(sum);
+        });
+      </script>
+
+      <!--<div class="Dead">-->
+
+        <h2 class="display-4">デッドリフト</h2>
+      <div class="input-group mb-5">
+        <input class="form-control form-control-lg" type="number" placeholder="重量を入力してください" id="dead_w">
+        <div class="input-group-append">
+        <span class="input-group-text" id="t1">kg</span>
+        </div>
+      </div>
+        <div class="input-group mb-5">
+        <input class="form-control form-control-lg" type="number" placeholder="回数を入力してください" id="dead_r">
+          <div class="input-group-append">
+        <span class="input-group-text" id="t2">回</span>
+          </div>
+      </div>
+    <!--ボタンを中央に配置-->
+    <div class="col text-center">
+    <button class="btn btn-primary btn-lg btn-block" id="dead_calculate">計算</button> <!--ボタンを横いっぱいに配置-->
+    </div>
+
+    </br>
+    <div>
+      <h3>推定MAX重量:<output name="result" id="dead_MAX"></output>  kg</h3>
+    </div>
+    <!--
+        <div class="col-lg-4">
+          <div class="bs-component">
+            <div class="alert alert-dismissible alert-info">
+              <strong>あなたのデッドリフトのMAX重量は</strong><input class="form-control" id="dead_MAX" type="text" disabled=""><strong>kgです！</strong>
+            </div>
+          </div>
+        </div>
+        -->
+
+      <script>
+        var dead_calculate = document.getElementById("dead_calculate");
+        dead_calculate.addEventListener("click",function(c) {
+          c.preventDefault();
+          var dead_w = document.getElementById("dead_w").value;
+          var dead_r = document.getElementById("dead_r").value;
+          var sum = parseInt(dead_w,10)*parseInt(dead_r,10)/33.3+parseInt(dead_w,10);
+          var dead_MAX = document.getElementById("dead_MAX");
+          dead_MAX.value = Math.floor(sum);
+        });
+      </script>
+
+    </br>
+  </br>
+
+<!--
+      <div class="col-lg-4">
+        <div class="bs-component">
+          <div class="alert alert-dismissible alert-success">
+            <strong>GitHub:<a href="https://github.com/EndoMotoki/BIG3" target="_blank">https://github.com/EndoMotoki/BIG3</a> </strong>
+          </div>
+        </div>
+      </div>
+      -->
+
+
+
+</body>
+</html>
